@@ -22,8 +22,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     
         view.addSubview(plusPhotoButton)
+        // Layout using Frames
         plusPhotoButton.frame = CGRect(x: 0, y: 0, width: 140, height: 140)
         plusPhotoButton.center = view.center
+
+    
     }
 
 
