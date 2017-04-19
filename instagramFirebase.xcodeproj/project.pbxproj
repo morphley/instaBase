@@ -12,6 +12,7 @@
 		A900AF981EA61D1500982B62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A900AF961EA61D1500982B62 /* Main.storyboard */; };
 		A900AF9A1EA61D1500982B62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A900AF991EA61D1500982B62 /* Assets.xcassets */; };
 		A900AF9D1EA61D1500982B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A900AF9B1EA61D1500982B62 /* LaunchScreen.storyboard */; };
+		A900AFA61EA6DA6B00982B62 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFA51EA6DA6B00982B62 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A900AF991EA61D1500982B62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A900AF9C1EA61D1500982B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A900AF9E1EA61D1500982B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A900AFA51EA6DA6B00982B62 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		A900AF911EA61D1500982B62 /* instagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				A900AFA41EA6DA5400982B62 /* Utils */,
 				A900AF921EA61D1500982B62 /* AppDelegate.swift */,
 				A900AF941EA61D1500982B62 /* ViewController.swift */,
 				A900AF961EA61D1500982B62 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				A900AF9E1EA61D1500982B62 /* Info.plist */,
 			);
 			path = instagramFirebase;
+			sourceTree = "<group>";
+		};
+		A900AFA41EA6DA5400982B62 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A900AFA51EA6DA6B00982B62 /* Extensions.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A900AF951EA61D1500982B62 /* ViewController.swift in Sources */,
+				A900AFA61EA6DA6B00982B62 /* Extensions.swift in Sources */,
 				A900AF931EA61D1500982B62 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
