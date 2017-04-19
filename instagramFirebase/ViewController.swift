@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 class ViewController: UIViewController {
     
@@ -14,7 +16,7 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         // button.backgroundColor = UIColor.red
-       // button.translatesAutoresizingMaskIntoConstraints = false
+        // button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -25,8 +27,30 @@ class ViewController: UIViewController {
         // tf.translatesAutoresizingMaskIntoConstraints = false
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.borderStyle = .roundedRect
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
+    
+    
+    func  handleTextInputChange(){
+        
+        // DIsable the signUpButton when the form is not filled
+        // Unwrap plus use of defaiult value
+        let isFormValid = emailTextField.text?.characters.count ?? 0 > 0  && userNameTextField.text?.characters.count ?? 0 > 0
+            && passwordTextField.text?.characters.count ?? 0 > 0
+        
+        
+        if isFormValid{
+            // If textfield are filled
+            signUpButton.isEnabled = true
+            signUpButton.backgroundColor = UIColor.rgb(red: 17, green: 144, blue: 237)
+            return
+        } else {
+            // If textfields are empty change color to original
+            signUpButton.isEnabled = false 
+            signUpButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+        }
+    }
     
     
     let userNameTextField: UITextField = {
@@ -36,6 +60,8 @@ class ViewController: UIViewController {
         // tf.translatesAutoresizingMaskIntoConstraints = false
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.borderStyle = .roundedRect
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+
         return tf
     }()
     
@@ -46,6 +72,8 @@ class ViewController: UIViewController {
         // tf.translatesAutoresizingMaskIntoConstraints = false
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.borderStyle = .roundedRect
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -58,6 +86,8 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(UIColor.white, for: .normal)
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.isEnabled = false
         return button
         
     }()
@@ -91,6 +121,36 @@ class ViewController: UIViewController {
         
     }
     
+    func handleSignUp() {
+        
+        guard let email = emailTextField.text, email.characters.count  > 0
+            else {return}
+        
+        guard let username = userNameTextField.text, username.characters.count > 0
+            else {return}
+        
+        guard let password = passwordTextField.text, password.characters.count > 0
+            else {return}
+        
+        //        let email = "dummy0@gmail.com"
+        //        let password = "123123"
+        
+        // Try to create a new user
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error: Error?) in
+            
+            if let err = error {
+                
+                print("Failed to create user:" , error)
+                return
+                
+            }
+            
+            print("Succesfully created user", user?.uid ?? "")
+        })
+        
+    }
+    
+    
     
     fileprivate func  setupInputFields() {
         
@@ -115,7 +175,7 @@ class ViewController: UIViewController {
         
         
         let stackView = UIStackView(arrangedSubviews: [emailTextField, userNameTextField, passwordTextField, signUpButton ])
-      //  stackView.translatesAutoresizingMaskIntoConstraints = false
+        //  stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -137,50 +197,4 @@ class ViewController: UIViewController {
     }
     
 }
-
-
-extension UIView {
-    
-    func anchor(top: NSLayoutYAxisAnchor? , left: NSLayoutXAxisAnchor?, right: NSLayoutXAxisAnchor? , bottom: NSLayoutYAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingRight: CGFloat, paddingBottom: CGFloat, width: CGFloat, height: CGFloat){
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        if let top = top {
-            self.topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
-        }
-        
-        
-        
-        if let left = left {
-            self.leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
-        }
-        
-        
-        if let right = right {
-            self.rightAnchor.constraint(equalTo: right, constant: -paddingRight).isActive = true
-        }
-        
-        
-        if let bottom = bottom {
-            self.bottomAnchor.constraint(equalTo: bottom, constant: paddingBottom).isActive = true
-        }
-        
-        if width != 0 {
-            
-            
-            self.widthAnchor.constraint(equalToConstant: width).isActive = true
-        }
-        
-        if height != 0 {
-            self.heightAnchor.constraint(equalToConstant: height).isActive = true
-            
-        }
-        
-        
-        
-    }
-    
-}
-
-
 
