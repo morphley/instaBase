@@ -15,10 +15,28 @@ class UserProfileHeader: UICollectionViewCell {
     // override a couple of methods to start drawing elements inside of your header
     // they dont have viewDidLoad
     
+    
+    
+    var user: User? {
+        
+        // immediately after we set the username
+        didSet{
+            
+            // Fetch the image
+            
+            
+            setupProfileImage()
+            usernameLabel.text = user?.username
+            
+            
+        }
+    }
+
+    
     let profileImageView: UIImageView = {
         
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.red
+       // iv.backgroundColor = UIColor.red
         iv.layer.cornerRadius = 80 / 2
         iv.clipsToBounds = true
         return iv
@@ -49,9 +67,73 @@ class UserProfileHeader: UICollectionViewCell {
     let usernameLabel: UILabel = {
     
         let label = UILabel()
-        label.text = "username"
+        label.text = ""
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
+    }()
+    
+    
+    let postLabel: UILabel = {
+        let label = UILabel()
+        
+        let attributedText = NSMutableAttributedString(string: "11\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14) ])
+      
+
+        attributedText.append(NSAttributedString(string: "posts", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: 14)]))
+        
+          label.attributedText = attributedText
+        
+        // label.text = "11\nposts"
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    
+    
+    }()
+    
+    
+    let follwersLabel: UILabel = {
+        let label = UILabel()
+        
+        let attributedText = NSMutableAttributedString(string: "0\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14) ])
+        
+        
+        attributedText.append(NSAttributedString(string: "followers", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: 14)]))
+        
+        label.attributedText = attributedText
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    
+    let followingLabel: UILabel = {
+        let label = UILabel()
+        
+        let attributedText = NSMutableAttributedString(string: "0\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14) ])
+        
+        
+        attributedText.append(NSAttributedString(string: "following", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: 14)]))
+        
+        label.attributedText = attributedText
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    let editProfileButton: UIButton = {
+    
+        let button = UIButton(type: .system)
+        button.setTitle("Edit Profile", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 3
+     
+        return button
+    
+    
     }()
     
     override init(frame: CGRect) {
@@ -70,38 +152,66 @@ class UserProfileHeader: UICollectionViewCell {
         
      
         setupBottomToolbar()
-        addSubview(usernameLabel)
         
-        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, bottom: gridButton.topAnchor, paddingTop: 4, paddingLeft: 12, paddingRight: 12, paddingBottom: 0, width: 0, height: 0)
+        setupUsernameLabel()
+      
         
-       // usernameLabel.text = user?.username
+        setupUserStatsView()
+        
+        addSubview(editProfileButton)
+        
+        editProfileButton.anchor(top: postLabel.bottomAnchor, left: postLabel.leftAnchor, right: followingLabel.rightAnchor, bottom: nil, paddingTop: 2, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 34)
+      
         
     }
     
     
-    var user: User? {
+    fileprivate func setupUserStatsView(){
     
-    // immediately after we set the username
-        didSet{
-            
-            // Fetch the image
-            
-            setupProfileImage()
-            
-
-        }
-    }
-    
-    
-    fileprivate func setupBottomToolbar(){
-    
-    let stackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton])
+        let stackView = UIStackView(arrangedSubviews: [postLabel, follwersLabel, followingLabel])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         addSubview(stackView)
-        stackView.backgroundColor = UIColor.red
+        stackView.anchor(top: profileImageView.topAnchor, left: profileImageView.rightAnchor, right: rightAnchor, bottom: nil, paddingTop: 12, paddingLeft: 12, paddingRight: 12, paddingBottom: 0, width: 0, height: 50 )
+
+    }
+    
+    
+    fileprivate func setupUsernameLabel(){
+     
+           addSubview(usernameLabel)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, bottom: gridButton.topAnchor, paddingTop: 4, paddingLeft: 12, paddingRight: 12, paddingBottom: 0, width: 0, height: 0)
+    
+    }
+    
+    fileprivate func setupBottomToolbar(){
+        
+        let topDividerView = UIView()
+        topDividerView.backgroundColor = UIColor.lightGray
+        
+        let bottomDividerView = UIView()
+        bottomDividerView.backgroundColor = UIColor.lightGray
+        
+        
+        
+    let stackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        
+        addSubview(stackView)
+        addSubview(topDividerView)
+        addSubview(bottomDividerView)
+        
+        
+        
+        //stackView.backgroundColor = UIColor.red
         
         stackView.anchor(top: nil, left: leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: self.frame.width, height: 50)
+        
+        topDividerView.anchor(top: stackView.topAnchor, left: leftAnchor, right: rightAnchor, bottom: nil, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 0.5)
+        
+           bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, right: rightAnchor, bottom: nil, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 0.5)
+
     
     }
     

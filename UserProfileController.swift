@@ -9,6 +9,8 @@
     import UIKit
     import Firebase
     
+    let cellId = "cellId"
+    
     class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -18,9 +20,21 @@
             
             collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
             
+            collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+            
             
         }
         
+        
+        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return 7
+        }
+        
+        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+            cell.backgroundColor = UIColor.purple
+            return cell
+        }
         
         override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
             
