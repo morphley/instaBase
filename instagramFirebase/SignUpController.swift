@@ -130,8 +130,40 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
     }()
     
+    
+    let alreadyHaveAccountButton : UIButton = {
+        
+        let button = UIButton(type: .system)
+        
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.lightGray])
+        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14) , NSForegroundColorAttributeName: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        
+        button.addTarget(self, action: #selector(handleAlreadyHaveAnAccount), for: .touchUpInside)
+        return button
+        
+    }()
+    
+    
+    func handleAlreadyHaveAnAccount(){
+        
+       _ =  navigationController?.popViewController(animated: true)
+        
+        // return value not being used therefore set underscore to get rid of the warning
+       
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(alreadyHaveAccountButton)
+        
+        
+        alreadyHaveAccountButton.anchor(top: nil, left: view.leftAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 15)
+        
+
         
         view.backgroundColor = UIColor.white
         view.addSubview(plusPhotoButton)
@@ -155,6 +187,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         //        emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
         //        emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -40).isActive = true
         //        emailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         
         setupInputFields()
         
