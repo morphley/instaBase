@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabBarController: UITabBarController {
     
@@ -14,6 +15,25 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+   
+        
+        if FIRAuth.auth()?.currentUser == nil {
+        
+            // shot if not logged in 
+            
+            DispatchQueue.main.async {
+                
+                
+                let loginController = LoginController()
+                let navController = UINavigationController(rootViewController: loginController)
+                self.present(navController, animated: true, completion: nil)
+                
+            }
+            
+            return
+        
+        }
      
 //        let redVc = UIViewController()
 //        redVc.view.backgroundColor = UIColor.red

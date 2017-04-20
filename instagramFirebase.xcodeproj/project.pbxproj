@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3BF7EDB7DD70C476EB694A57 /* Pods_instagramFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC4CB1F893EBD6E7557BF7D /* Pods_instagramFirebase.framework */; };
 		A900AF931EA61D1500982B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AF921EA61D1500982B62 /* AppDelegate.swift */; };
-		A900AF951EA61D1500982B62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AF941EA61D1500982B62 /* ViewController.swift */; };
+		A900AF951EA61D1500982B62 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AF941EA61D1500982B62 /* SignUpController.swift */; };
 		A900AF981EA61D1500982B62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A900AF961EA61D1500982B62 /* Main.storyboard */; };
 		A900AF9A1EA61D1500982B62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A900AF991EA61D1500982B62 /* Assets.xcassets */; };
 		A900AF9D1EA61D1500982B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A900AF9B1EA61D1500982B62 /* LaunchScreen.storyboard */; };
@@ -18,13 +18,14 @@
 		A900AFAA1EA7A90F00982B62 /* MainTabBarController .swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFA91EA7A90F00982B62 /* MainTabBarController .swift */; };
 		A900AFAC1EA7D81100982B62 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFAB1EA7D81100982B62 /* UserProfileController.swift */; };
 		A900AFAF1EA8FB3C00982B62 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFAE1EA8FB3C00982B62 /* UserProfileHeader.swift */; };
+		A900AFB11EA96A9200982B62 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFB01EA96A9200982B62 /* LoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		61EB2691B4810D24BA6BEFE3 /* Pods-instagramFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagramFirebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instagramFirebase/Pods-instagramFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		A900AF8F1EA61D1500982B62 /* instagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A900AF921EA61D1500982B62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A900AF941EA61D1500982B62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A900AF941EA61D1500982B62 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		A900AF971EA61D1500982B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A900AF991EA61D1500982B62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A900AF9C1EA61D1500982B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,6 +35,7 @@
 		A900AFA91EA7A90F00982B62 /* MainTabBarController .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainTabBarController .swift"; sourceTree = "<group>"; };
 		A900AFAB1EA7D81100982B62 /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileController.swift; path = ../UserProfileController.swift; sourceTree = "<group>"; };
 		A900AFAE1EA8FB3C00982B62 /* UserProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		A900AFB01EA96A9200982B62 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		BEE66E418758703F2A30583B /* Pods-instagramFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagramFirebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-instagramFirebase/Pods-instagramFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		CAC4CB1F893EBD6E7557BF7D /* Pods_instagramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,10 +82,10 @@
 		A900AF911EA61D1500982B62 /* instagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				A900AFB21EA96A9F00982B62 /* Login */,
 				A900AFAD1EA8FB1B00982B62 /* UserProfile */,
 				A900AFA41EA6DA5400982B62 /* Utils */,
 				A900AF921EA61D1500982B62 /* AppDelegate.swift */,
-				A900AF941EA61D1500982B62 /* ViewController.swift */,
 				A900AF961EA61D1500982B62 /* Main.storyboard */,
 				A900AF991EA61D1500982B62 /* Assets.xcassets */,
 				A900AF9B1EA61D1500982B62 /* LaunchScreen.storyboard */,
@@ -108,6 +110,15 @@
 				A900AFAE1EA8FB3C00982B62 /* UserProfileHeader.swift */,
 			);
 			name = UserProfile;
+			sourceTree = "<group>";
+		};
+		A900AFB21EA96A9F00982B62 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A900AFB01EA96A9200982B62 /* LoginController.swift */,
+				A900AF941EA61D1500982B62 /* SignUpController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		BA2A0C204D902A16C90BE33F /* Pods */ = {
@@ -243,12 +254,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A900AF951EA61D1500982B62 /* ViewController.swift in Sources */,
+				A900AF951EA61D1500982B62 /* SignUpController.swift in Sources */,
 				A900AFA61EA6DA6B00982B62 /* Extensions.swift in Sources */,
 				A900AF931EA61D1500982B62 /* AppDelegate.swift in Sources */,
 				A900AFAF1EA8FB3C00982B62 /* UserProfileHeader.swift in Sources */,
 				A900AFAC1EA7D81100982B62 /* UserProfileController.swift in Sources */,
 				A900AFAA1EA7A90F00982B62 /* MainTabBarController .swift in Sources */,
+				A900AFB11EA96A9200982B62 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
