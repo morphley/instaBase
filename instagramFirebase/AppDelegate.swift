@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
+        window = UIWindow()
+        window?.rootViewController = MainTabBarController()
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
