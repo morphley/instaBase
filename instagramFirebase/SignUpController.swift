@@ -252,7 +252,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                     }
                     print("Succesfully saved userinfo to DB")
                     
-                    
+                    // dont see obselete data start fresh every time you login new
                     
                     guard let mainTabBarController =  UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
                     
