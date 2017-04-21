@@ -45,6 +45,11 @@
                   try FIRAuth.auth()?.signOut()
                     
                     // what happens we need to present some kind of login Controller 
+                    
+                    let loginController = LoginController()
+                    let navController = UINavigationController(rootViewController: loginController)
+                    self.present(navController, animated: true, completion: nil)
+                    
                 } catch let signOutErr {
                  
                     print("Failed to SignOut", signOutErr)

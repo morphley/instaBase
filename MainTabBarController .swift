@@ -11,16 +11,16 @@ import Firebase
 
 class MainTabBarController: UITabBarController {
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-   
+        
         
         if FIRAuth.auth()?.currentUser == nil {
-        
-            // shot if not logged in 
+            
+            // shot if not logged in
             
             DispatchQueue.main.async {
                 
@@ -32,23 +32,41 @@ class MainTabBarController: UITabBarController {
             }
             
             return
-        
+            
         }
-     
-//        let redVc = UIViewController()
-//        redVc.view.backgroundColor = UIColor.red
-
+        
+        setupViewControllers()
+        
+        //        let redVc = UIViewController()
+        //        redVc.view.backgroundColor = UIColor.red
+        
+        
+    }
+    
+    
+    func  setupViewControllers(){
+        
         let layout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: layout)
         let navController = UINavigationController(rootViewController: userProfileController)
         
-        viewControllers = [navController, UIViewController()]
+        
         
         navController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
         navController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
         
-       tabBar.tintColor = UIColor.black
+        tabBar.tintColor = UIColor.black
+        
+        viewControllers = [navController, UIViewController()]
+        
         
         
     }
+    
+    
+    
+    
+    
+    
+    
 }
