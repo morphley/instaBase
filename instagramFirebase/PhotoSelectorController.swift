@@ -37,6 +37,10 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedImage = images[indexPath.item]
         self.collectionView?.reloadData() // entire collectionview is going to redraq itself
+        
+        //indexpath first one in the grid 
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true) // automatically scrools the grid to the top
     }
     
     
@@ -146,9 +150,13 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     // renders the head
     
+    var header: PhotoSelectorHeader?
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
+        
+        self.header = header
         header.photoImageView.image = selectedImage
         
         print(header.photoImageView.image?.size)
@@ -220,7 +228,10 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     func handleNext(){
         
-        print(123)
+        let sharePhotoController = SharePhotoController()
+     sharePhotoController.selectedImage = header?.photoImageView.image
+        navigationController?.pushViewController(sharePhotoController, animated: true)
+        
         
     }
 }
