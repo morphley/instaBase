@@ -30,15 +30,15 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         collectionView?.register(PhotoSelectorHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         
         fetchPhotos()
-   
+        
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedImage = images[indexPath.item]
-        self.collectionView?.reloadData() // entire collectionview is going to redraq itself
+        self.collectionView?.reloadData() // entire collectionview is going to redraw itself
         
-        //indexpath first one in the grid 
+        //indexpath first one in the grid
         let indexPath = IndexPath(item: 0, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true) // automatically scrools the grid to the top
     }
@@ -51,24 +51,24 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     var images =  [UIImage]() // empty uiimage array
     var assets = [PHAsset]()
     
-   
-
+    
+    
     
     fileprivate func  assetsFetchOptions() -> PHFetchOptions{
-    
+        
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.fetchLimit = 30
         let sortDiscriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchOptions.sortDescriptors = [sortDiscriptor]
         return fetchOptions
-    
+        
     }
     
     
     
     fileprivate func fetchPhotos(){
-   
+        
         let allPhotos =  PHAsset.fetchAssets(with: .image, options: assetsFetchOptions())
         
         DispatchQueue.global(qos: .background).async {
@@ -107,7 +107,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
                 })
                 
             })
-
+            
             
         }
         
@@ -161,10 +161,10 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         print(header.photoImageView.image?.size)
         // header.backgroundColor = UIColor.red // you have to provide a size for the header or it wont render
-       
         
         
-       
+        
+        
         let imageManger = PHImageManager.default()
         
         if let selectedImage = selectedImage {
@@ -173,12 +173,12 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
                 
                 let targetSize = CGSize(width: 600, height: 600)
                 
-                  imageManger.requestImage(for: selectedAsset, targetSize: targetSize, contentMode: .default, options: nil, resultHandler: { (image, info) in
+                imageManger.requestImage(for: selectedAsset, targetSize: targetSize, contentMode: .default, options: nil, resultHandler: { (image, info) in
                     
                     header.photoImageView.image = image
-                   })
-            
-            
+                })
+                
+                
             }
             
             
@@ -229,7 +229,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     func handleNext(){
         
         let sharePhotoController = SharePhotoController()
-     sharePhotoController.selectedImage = header?.photoImageView.image
+        sharePhotoController.selectedImage = header?.photoImageView.image
         navigationController?.pushViewController(sharePhotoController, animated: true)
         
         
