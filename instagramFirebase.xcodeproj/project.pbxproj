@@ -23,6 +23,8 @@
 		A900AFB71EAB75E700982B62 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFB61EAB75E700982B62 /* PhotoSelectorCell.swift */; };
 		A900AFB91EAB7A3400982B62 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFB81EAB7A3400982B62 /* PhotoSelectorHeader.swift */; };
 		A900AFBB1EABB7DA00982B62 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFBA1EABB7DA00982B62 /* SharePhotoController.swift */; };
+		A961CBB51EB794CE0060B2E1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBB41EB794CE0060B2E1 /* Post.swift */; };
+		A961CBB71EB7E1F20060B2E1 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBB61EB7E1F20060B2E1 /* UserProfilePhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		A900AFB61EAB75E700982B62 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		A900AFB81EAB7A3400982B62 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		A900AFBA1EABB7DA00982B62 /* SharePhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
+		A961CBB41EB794CE0060B2E1 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		A961CBB61EB7E1F20060B2E1 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 		BEE66E418758703F2A30583B /* Pods-instagramFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagramFirebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-instagramFirebase/Pods-instagramFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		CAC4CB1F893EBD6E7557BF7D /* Pods_instagramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,6 +94,7 @@
 		A900AF911EA61D1500982B62 /* instagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				A961CBB31EB794B90060B2E1 /* Models */,
 				A900AFB31EAA5F4D00982B62 /* AddPhoto */,
 				A900AFB21EA96A9F00982B62 /* Login */,
 				A900AFAD1EA8FB1B00982B62 /* UserProfile */,
@@ -117,6 +122,7 @@
 			children = (
 				A900AFAB1EA7D81100982B62 /* UserProfileController.swift */,
 				A900AFAE1EA8FB3C00982B62 /* UserProfileHeader.swift */,
+				A961CBB61EB7E1F20060B2E1 /* UserProfilePhotoCell.swift */,
 			);
 			name = UserProfile;
 			sourceTree = "<group>";
@@ -139,6 +145,14 @@
 				A900AFBA1EABB7DA00982B62 /* SharePhotoController.swift */,
 			);
 			name = AddPhoto;
+			sourceTree = "<group>";
+		};
+		A961CBB31EB794B90060B2E1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A961CBB41EB794CE0060B2E1 /* Post.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		BA2A0C204D902A16C90BE33F /* Pods */ = {
@@ -277,9 +291,11 @@
 				A900AFBB1EABB7DA00982B62 /* SharePhotoController.swift in Sources */,
 				A900AF951EA61D1500982B62 /* SignUpController.swift in Sources */,
 				A900AFB71EAB75E700982B62 /* PhotoSelectorCell.swift in Sources */,
+				A961CBB51EB794CE0060B2E1 /* Post.swift in Sources */,
 				A900AFA61EA6DA6B00982B62 /* Extensions.swift in Sources */,
 				A900AF931EA61D1500982B62 /* AppDelegate.swift in Sources */,
 				A900AFAF1EA8FB3C00982B62 /* UserProfileHeader.swift in Sources */,
+				A961CBB71EB7E1F20060B2E1 /* UserProfilePhotoCell.swift in Sources */,
 				A900AFAC1EA7D81100982B62 /* UserProfileController.swift in Sources */,
 				A900AFAA1EA7A90F00982B62 /* MainTabBarController .swift in Sources */,
 				A900AFB11EA96A9200982B62 /* LoginController.swift in Sources */,
