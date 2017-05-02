@@ -25,6 +25,7 @@
 		A900AFBB1EABB7DA00982B62 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900AFBA1EABB7DA00982B62 /* SharePhotoController.swift */; };
 		A961CBB51EB794CE0060B2E1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBB41EB794CE0060B2E1 /* Post.swift */; };
 		A961CBB71EB7E1F20060B2E1 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBB61EB7E1F20060B2E1 /* UserProfilePhotoCell.swift */; };
+		A961CBB91EB8B40C0060B2E1 /* CustomImageView .swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBB81EB8B40C0060B2E1 /* CustomImageView .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		A900AFBA1EABB7DA00982B62 /* SharePhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		A961CBB41EB794CE0060B2E1 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A961CBB61EB7E1F20060B2E1 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
+		A961CBB81EB8B40C0060B2E1 /* CustomImageView .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CustomImageView .swift"; sourceTree = "<group>"; };
 		BEE66E418758703F2A30583B /* Pods-instagramFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagramFirebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-instagramFirebase/Pods-instagramFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		CAC4CB1F893EBD6E7557BF7D /* Pods_instagramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				A900AFA51EA6DA6B00982B62 /* Extensions.swift */,
+				A961CBB81EB8B40C0060B2E1 /* CustomImageView .swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				A961CBB71EB7E1F20060B2E1 /* UserProfilePhotoCell.swift in Sources */,
 				A900AFAC1EA7D81100982B62 /* UserProfileController.swift in Sources */,
 				A900AFAA1EA7A90F00982B62 /* MainTabBarController .swift in Sources */,
+				A961CBB91EB8B40C0060B2E1 /* CustomImageView .swift in Sources */,
 				A900AFB11EA96A9200982B62 /* LoginController.swift in Sources */,
 				A900AFB91EAB7A3400982B62 /* PhotoSelectorHeader.swift in Sources */,
 				A900AFB51EAA5F9B00982B62 /* PhotoSelectorController.swift in Sources */,

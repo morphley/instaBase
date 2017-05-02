@@ -23,11 +23,40 @@
             
             setupLogoutButton()
             
-            fetchPosts()
+           // fetchPosts()
+            
+            fetchOrderedPost()
             
         }
         
         var posts = [Post]()
+        
+        fileprivate func fetchOrderedPost(){
+            
+            guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+            let ref = FIRDatabase.database().reference().child("posts").child(uid)
+            
+            ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+                
+                print(snapshot.key, snapshot.value)
+                guard let dictionary = snapshot.value as? [String: Any] else { return }
+                
+                let post = Post(dictionary: dictionary)
+                self.posts.append(post)
+                
+                    
+                    self.collectionView?.reloadData()
+               
+   
+                
+            }) { (err) in
+                print("failed to fetch ordered post",err)
+            }
+        
+        }
+        
+        
+        
         
         fileprivate func fetchPosts(){
     

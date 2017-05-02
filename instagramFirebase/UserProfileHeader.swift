@@ -24,8 +24,9 @@ class UserProfileHeader: UICollectionViewCell {
             
             // Fetch the image
             
-            
-            setupProfileImage()
+            guard let profileImageUrl = user?.profileImageUrl else { return }
+            profileImageView.loadImage(urlString: profileImageUrl)
+           // setupProfileImage()
             usernameLabel.text = user?.username
             
             
@@ -33,9 +34,9 @@ class UserProfileHeader: UICollectionViewCell {
     }
 
     
-    let profileImageView: UIImageView = {
+    let profileImageView: CustomImageView = {
         
-        let iv = UIImageView()
+        let iv = CustomImageView()
        // iv.backgroundColor = UIColor.red
         iv.layer.cornerRadius = 80 / 2
         iv.clipsToBounds = true
@@ -215,41 +216,41 @@ class UserProfileHeader: UICollectionViewCell {
     
     }
     
-    fileprivate func setupProfileImage(){
-        
-        
-       
-        guard let profileImageUrl = user?.profileImageUrl else { return }
-        
-        guard let url = URL(string: profileImageUrl) else { return }
-        
-        
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            // when completion  block is called is executed you are in a background thread
-            
-            // check for the error, then construct the iamge using data
-            
-            if let err = err {
-                
-                print("Failed to fetch Profileimage", err)
-                return
-            }
-            
-            //print(data)
-            
-            guard let data = data else { return }
-            
-            let image = UIImage(data: data)
-            // need to go back on the main thread
-            DispatchQueue.main.async {
-                self.profileImageView.image = image
-            }
-            
-            }.resume() // dataTask need to call resume
-
-        
-        
-    }
+//    fileprivate func setupProfileImage(){
+//        
+//        
+//       
+//        guard let profileImageUrl = user?.profileImageUrl else { return }
+//        
+//        guard let url = URL(string: profileImageUrl) else { return }
+//        
+//        
+//        URLSession.shared.dataTask(with: url) { (data, response, err) in
+//            // when completion  block is called is executed you are in a background thread
+//            
+//            // check for the error, then construct the iamge using data
+//            
+//            if let err = err {
+//                
+//                print("Failed to fetch Profileimage", err)
+//                return
+//            }
+//            
+//            //print(data)
+//            
+//            guard let data = data else { return }
+//            
+//            let image = UIImage(data: data)
+//            // need to go back on the main thread
+//            DispatchQueue.main.async {
+//                self.profileImageView.image = image
+//            }
+//            
+//            }.resume() // dataTask need to call resume
+//
+//        
+//        
+ //   }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
