@@ -58,42 +58,42 @@
         
         
         
-        fileprivate func fetchPosts(){
-    
-            guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
-            
-            let ref = FIRDatabase.database().reference().child("posts").child(uid)
-            
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                      print(snapshot.value)
-                
-                
-                guard let dictionaries = snapshot.value as? [String : Any] else { return }
-                
-                dictionaries.forEach({ (key, value) in
-                    print("Key\(key), value \(value)")
-                    
-                    guard let dictionary = value as? [String : Any ] else { return }
-                    let imageUrl = dictionary["imageUrl"] as? String
-                    
-                    print("imageUrl\(imageUrl)")
-                    
-                    let post = Post(dictionary: dictionary)
-                    self.posts.append(post)
-                    
-                    
-                })
-                
-                self.collectionView?.reloadData()
-                
-            }) { (err) in
-                
-                print("Failed to fetch posts:", err)
-            }
-            
-            
-        
-        }
+//        fileprivate func fetchPosts(){
+//    
+//            guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
+//            
+//            let ref = FIRDatabase.database().reference().child("posts").child(uid)
+//            
+//            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//                      print(snapshot.value)
+//                
+//                
+//                guard let dictionaries = snapshot.value as? [String : Any] else { return }
+//                
+//                dictionaries.forEach({ (key, value) in
+//                    print("Key\(key), value \(value)")
+//                    
+//                    guard let dictionary = value as? [String : Any ] else { return }
+//                    let imageUrl = dictionary["imageUrl"] as? String
+//                    
+//                    print("imageUrl\(imageUrl)")
+//                    
+//                    let post = Post(dictionary: dictionary)
+//                    self.posts.append(post)
+//                    
+//                    
+//                })
+//                
+//                self.collectionView?.reloadData()
+//                
+//            }) { (err) in
+//                
+//                print("Failed to fetch posts:", err)
+//            }
+//            
+//            
+//        
+//        }
         
         
         

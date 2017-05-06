@@ -8,16 +8,21 @@
 
 import UIKit
 
+var imageCache = [String : UIImage]()  // outside to access its anywhere we want
+
 
 class CustomImageView: UIImageView {
     
     var lastUrlUsedToLoadMessage: String?
-    
+
     func loadImage(urlString: String){
         
         lastUrlUsedToLoadMessage = urlString
-    
-        print("Loading Image ....")
+        
+        if let cachedImage = imageCache[urlString] {
+            self.image = cachedImage
+            return
+        }
         
         guard let url = URL(string: urlString) else { return }
         
@@ -29,7 +34,7 @@ class CustomImageView: UIImageView {
                 return
                 
             }
-          
+            
             //no repeating effect of the images
             if url.absoluteString != self.lastUrlUsedToLoadMessage {
                 return
@@ -40,13 +45,15 @@ class CustomImageView: UIImageView {
             guard let imageData = data else { return }
             
             let photoImage = UIImage(data: imageData)
+            imageCache[url.absoluteString] = photoImage
+            
             DispatchQueue.main.async {
                 self.image = photoImage
             }
             
             
             }.resume()
-    
-    
+        
+        
     }
 }
