@@ -78,7 +78,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     //Change the size of a cell when implementing the delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 200)
+        var height: CGFloat = 40 + 8 + 8 // username and userprofileimageview
+        height += view.frame.width
+        height += 50
+        height += 60
+        
+        return CGSize(width: view.frame.width, height: height)
     }
     
     
