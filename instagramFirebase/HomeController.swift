@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 
+
+
+
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     
@@ -32,57 +35,57 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     fileprivate func fetchPosts(){
         
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
-        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            guard let userDictionary = snapshot.value as? [String: Any] else { return }
-            
-            let user = User.init(dictionary: userDictionary)
         
-            let ref = FIRDatabase.database().reference().child("posts").child(uid)
-            
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-               // print(snapshot.value)
-                
-                guard let dictionaries = snapshot.value as? [String : Any] else { return }
-                
-                dictionaries.forEach({ (key, value) in
-                    print("Key\(key), value \(value)")
-                    
-                    guard let dictionary = value as? [String : Any ] else { return }
-                    print(dictionary)
-                    
-                    let imageUrl = dictionary["imageUrl"] as? String
-                    
-                  //  let dummyUser = User(dictionary: ["username": "omari"])
-                    let post = Post(user: user, dictionary: dictionary)
-                    
-                    self.posts.append(post)
-                    
-                })
-                
-                self.collectionView?.reloadData()
-                
-            }) { (err) in
-                
-                print("Failed to fetch posts:", err)
-            }
-            
-        }) { (err) in
-            print("Failed to fetch user for posts:", err)
+        FIRDatabase.fetchUserWithUid(uid: uid) { (user) in
+            self.fetchPostsWithUser(user: user)
         }
         
         
+        
     }
-
+    
+    
+    fileprivate func fetchPostsWithUser(user: User){
+        
+        let ref = FIRDatabase.database().reference().child("posts").child(user.uid)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            // print(snapshot.value)
+            
+            guard let dictionaries = snapshot.value as? [String : Any] else { return }
+            
+            dictionaries.forEach({ (key, value) in
+                print("Key\(key), value \(value)")
+                
+                guard let dictionary = value as? [String : Any ] else { return }
+                print(dictionary)
+                
+                let imageUrl = dictionary["imageUrl"] as? String
+                
+                //  let dummyUser = User(dictionary: ["username": "omari"])
+                let post = Post(user: user, dictionary: dictionary)
+                
+                self.posts.append(post)
+                
+            })
+            
+            self.collectionView?.reloadData()
+            
+        }) { (err) in
+            
+            print("Failed to fetch posts:", err)
+        }
+        
+    }
     
     
     func setupNavigationItems(){
-    
-    navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
+        
+        navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
         
         
-    
-    
+        
+        
     }
     
     //Change the size of a cell when implementing the delegate
@@ -112,7 +115,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         cell.post = posts[indexPath.item]
         return cell
-    
+        
     }
-
+    
 }

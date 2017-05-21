@@ -222,29 +222,12 @@
             
             guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
             
-            FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                print(snapshot.value ?? "")
-                
-                //Cast the snapshot value value is of any type we dont know what kind of value is to kind
-                //of access
-                // the value you have to cast it
-                guard    let dictionary = snapshot.value as? [String : Any] else { return }
-                
-                //            let profileImageUrl = dictionary["profileImageUrl"] as? String
-                //               let userName = dictionary["username"] as? String
-                
-                self.user = User(dictionary: dictionary)
+            FIRDatabase.fetchUserWithUid(uid: uid) { (user) in
                 
                 
-                
+                self.user = user
                 self.navigationItem.title = self.user?.username
                 self.collectionView?.reloadData() // This executes the size for the header and also the rendering of the header one more time
-                
-            }) { (err) in
-                print("Failed to fetch user", err)
-                
-                
             }
             
             

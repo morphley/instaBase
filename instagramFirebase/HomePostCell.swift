@@ -16,13 +16,13 @@ class HomePostCell: UICollectionViewCell {
     
         didSet{
             guard let postImageUrl = post?.imageUrl else { return }
-             print(post?.imageUrl)
             photoImageView.loadImage(urlString: postImageUrl)
+            usernameLabel.text = post?.user.username
+            
         
-            guard let profileImageUrl =  post?.user?.profileImageUrl else { return }
+            guard let profileImageUrl =  post?.user.profileImageUrl else { return }
             userProfileImageView.loadImage(urlString: (profileImageUrl))
-            usernameLabel.text = post?.user?.username
-           
+          
             
             //captionLabel.text = post?.caption
             
@@ -36,7 +36,7 @@ class HomePostCell: UICollectionViewCell {
         
         guard let post = self.post else { return }
         
-        let attributedText = NSMutableAttributedString(string: "xX", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)])
+        let attributedText = NSMutableAttributedString(string: post.user.username, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: " \(post.caption)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)]))
         
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 4)]))
