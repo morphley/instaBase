@@ -28,6 +28,7 @@
 		A961CBB91EB8B40C0060B2E1 /* CustomImageView .swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBB81EB8B40C0060B2E1 /* CustomImageView .swift */; };
 		A961CBBC1EB8DAD20060B2E1 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBBB1EB8DAD20060B2E1 /* HomeController.swift */; };
 		A961CBBE1EB8DC8F0060B2E1 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBBD1EB8DC8F0060B2E1 /* HomePostCell.swift */; };
+		A961CBC01EBE4B540060B2E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961CBBF1EBE4B540060B2E1 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		A961CBB81EB8B40C0060B2E1 /* CustomImageView .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CustomImageView .swift"; sourceTree = "<group>"; };
 		A961CBBB1EB8DAD20060B2E1 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		A961CBBD1EB8DC8F0060B2E1 /* HomePostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		A961CBBF1EBE4B540060B2E1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BEE66E418758703F2A30583B /* Pods-instagramFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagramFirebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-instagramFirebase/Pods-instagramFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		CAC4CB1F893EBD6E7557BF7D /* Pods_instagramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				A961CBB41EB794CE0060B2E1 /* Post.swift */,
+				A961CBBF1EBE4B540060B2E1 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				A900AFAF1EA8FB3C00982B62 /* UserProfileHeader.swift in Sources */,
 				A961CBB71EB7E1F20060B2E1 /* UserProfilePhotoCell.swift in Sources */,
 				A900AFAC1EA7D81100982B62 /* UserProfileController.swift in Sources */,
+				A961CBC01EBE4B540060B2E1 /* User.swift in Sources */,
 				A900AFAA1EA7A90F00982B62 /* MainTabBarController .swift in Sources */,
 				A961CBB91EB8B40C0060B2E1 /* CustomImageView .swift in Sources */,
 				A900AFB11EA96A9200982B62 /* LoginController.swift in Sources */,

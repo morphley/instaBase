@@ -13,10 +13,14 @@ struct Post{
 
 
     let imageUrl: String?
+    let caption: String?
+    let user: User?
     
-    init(dictionary: [String: Any]) {
+    init(user: User, dictionary: [String: Any]) {
         
+        self.user = user
         self.imageUrl = dictionary["imageUrl"] as? String ?? ""
+        self.caption = dictionary["caption"] as? String ?? ""
     }
 
 }

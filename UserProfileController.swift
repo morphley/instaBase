@@ -8,6 +8,7 @@
     
     import UIKit
     import Firebase
+    
     let cellId = "cellId"
     
     class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -41,8 +42,12 @@
                 print(snapshot.key, snapshot.value)
                 guard let dictionary = snapshot.value as? [String: Any] else { return }
                 
-                let post = Post(dictionary: dictionary)
-                self.posts.append(post)
+                guard let user = self.user else {return}
+                
+                let post = Post(user: user, dictionary: dictionary)
+                
+                self.posts.insert(post, at: 0)
+              //  self.posts.append(post)
                 
                     
                     self.collectionView?.reloadData()
@@ -162,8 +167,24 @@
         
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            var width = ( view.frame.width - 2 ) / 3
-            return CGSize(width: width , height: width)
+            
+            
+                            var width = ( view.frame.width - 2 ) / 3
+                        return CGSize(width: width , height: width)
+
+            
+//
+//            if indexPath.row < 3 {
+//                
+//                var width = ( view.frame.width - 2 ) / 3
+//            return CGSize(width: width , height: width)
+//                
+//            }
+//            
+//            
+//            var width = ( view.frame.width - 2 ) / 3
+//            return CGSize(width: width , height: width)
+
         }
         
         
@@ -232,16 +253,4 @@
     }
     
     
-    struct User {
-        
-        let username: String
-        let profileImageUrl: String
-        
-        init(dictionary: [String : Any]) {
-            self.username = dictionary["username"] as? String ?? ""
-            self.profileImageUrl = dictionary["profileImageUrl"] as? String  ?? "" // because its an Any type
- 
-        }
-        
-        
-    }
+    

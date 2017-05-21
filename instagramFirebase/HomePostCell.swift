@@ -19,8 +19,36 @@ class HomePostCell: UICollectionViewCell {
              print(post?.imageUrl)
             photoImageView.loadImage(urlString: postImageUrl)
         
+            guard let profileImageUrl =  post?.user?.profileImageUrl else { return }
+            userProfileImageView.loadImage(urlString: (profileImageUrl))
+            usernameLabel.text = post?.user?.username
+           
+            
+            //captionLabel.text = post?.caption
+            
+            
+            setupAttributedCaption() // because caption doesnt look like we want
         }
     }
+
+    
+    fileprivate func setupAttributedCaption(){
+        
+        guard let post = self.post else { return }
+        
+        let attributedText = NSMutableAttributedString(string: "xX", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: " \(post.caption)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)]))
+        
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 4)]))
+        
+        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.gray]))
+        
+        captionLabel.attributedText = attributedText
+    
+    
+    }
+    
+    
     
     let userProfileImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -28,7 +56,7 @@ class HomePostCell: UICollectionViewCell {
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 40/2
         iv.layer.masksToBounds = true
-        iv.backgroundColor = UIColor.blue
+       // iv.backgroundColor = UIColor.blue
         return iv
     }()
     
@@ -83,13 +111,6 @@ class HomePostCell: UICollectionViewCell {
     let captionLabel: UILabel = {
     
         let label = UILabel()
-       // label.text = "adsasad"
-        let attributedText = NSMutableAttributedString(string: "Username", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: " Some caption text that will perhaps wrap on the next line", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)]))
-        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 4)]))
-        
-        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.gray]))
-        label.attributedText = attributedText
         label.numberOfLines = 0
         return label
     

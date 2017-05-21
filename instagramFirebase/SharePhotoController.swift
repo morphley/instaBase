@@ -40,34 +40,27 @@ class SharePhotoController: UIViewController{
         iv.clipsToBounds = true
         return iv
         
-        
+
     }()
     
     
     let textView: UITextView = {
-        
         let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 14)
         return tv
-        
     }()
     
     
     fileprivate func setupImageAndTextViews(){
         
-        
         let containerView = UIView()
         containerView.backgroundColor = UIColor.white
         view.addSubview(containerView)
-        
-        
         // um unter die navbar zu kommen
         containerView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, bottom: nil, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 100)
         containerView.addSubview(imageView)
         
         imageView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: nil, bottom: containerView.bottomAnchor, paddingTop: 8, paddingLeft: 8, paddingRight: 0, paddingBottom: 8, width: 84, height: 0)
-        
-        
         
         containerView.addSubview(textView)
         
@@ -77,8 +70,6 @@ class SharePhotoController: UIViewController{
     func handleShare(){
         
         guard let caption = textView.text, caption.characters.count > 0 else { return } // check wheter or not a caption text existss
-        
-        
         print("handleShare")
         
         // try to get the image outside of the image view
@@ -111,10 +102,9 @@ class SharePhotoController: UIViewController{
     fileprivate func saveToDatabaseWithImageUrl(imageUrl: String){
         
         guard let postImage = selectedImage else { return }
-        
         guard let caption = textView.text else { return }
-        
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+        
         
         let userPostRef = FIRDatabase.database().reference().child("posts").child(uid)
         let ref =    userPostRef.childByAutoId()
