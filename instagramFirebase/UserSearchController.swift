@@ -57,8 +57,25 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         
         collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.alwaysBounceVertical = true
+        collectionView?.keyboardDismissMode = .onDrag
         
         fetchUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchBar.isHidden = false
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        searchBar.isHidden = true
+        searchBar.resignFirstResponder() // basically hides the keyboard once you select a row
+        let user = filteredUsers[indexPath.item]
+        print(user.username)
+        
+        let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        userProfileController.userId = user.uid
+        navigationController?.pushViewController(userProfileController, animated: true)
     }
     
     var filteredUsers = [User]()
@@ -70,7 +87,15 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
             
             guard let  dictionaries = snapshot.value as? [String:Any] else { return }
             
+        
             dictionaries.forEach({ (key, value) in
+                if key == FIRAuth.auth()?.currentUser?.uid {
+                
+                    print("Found myself ommit from list...")
+                
+                    return
+                }
+                
                 print(key,value)
                 
                 guard let userDictionary = value as? [String:Any] else { return }

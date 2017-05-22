@@ -9,9 +9,15 @@
     import UIKit
     import Firebase
     
-    let cellId = "cellId"
-    
+ 
     class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+        
+        
+        let cellId = "cellId"
+        var userId: String?
+    
+        
+        
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -26,7 +32,7 @@
             
            // fetchPosts()
             
-            fetchOrderedPost()
+          //  fetchOrderedPost()
             
         }
         
@@ -34,7 +40,7 @@
         
         fileprivate func fetchOrderedPost(){
             
-            guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+            guard let uid = self.user?.uid else { return }
             let ref = FIRDatabase.database().reference().child("posts").child(uid)
             
             ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
@@ -220,7 +226,9 @@
         // Fetch user and set the navbar TItle
         fileprivate func fetchUser(){
             
-            guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+            let uid = userId ?? FIRAuth.auth()?.currentUser?.uid ?? ""
+            
+            //guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
             
             FIRDatabase.fetchUserWithUid(uid: uid) { (user) in
                 
@@ -228,6 +236,7 @@
                 self.user = user
                 self.navigationItem.title = self.user?.username
                 self.collectionView?.reloadData() // This executes the size for the header and also the rendering of the header one more time
+                self.fetchOrderedPost()
             }
             
             
