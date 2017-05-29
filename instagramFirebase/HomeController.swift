@@ -40,8 +40,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             self.fetchPostsWithUser(user: user)
         }
         
-        
-        
     }
     
     

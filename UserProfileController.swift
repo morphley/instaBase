@@ -234,6 +234,7 @@
                 
                 
                 self.user = user
+               
                 self.navigationItem.title = self.user?.username
                 self.collectionView?.reloadData() // This executes the size for the header and also the rendering of the header one more time
                 self.fetchOrderedPost()

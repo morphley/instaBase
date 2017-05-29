@@ -62,9 +62,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         setupViewControllers()
         
-        //        let redVc = UIViewController()
-        //        redVc.view.backgroundColor = UIColor.red
-        
         
     }
     

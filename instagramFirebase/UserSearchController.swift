@@ -15,7 +15,6 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     let cellId = "cellId"
     
     lazy var  searchBar: UISearchBar = {
-        
         let sb = UISearchBar()
         sb.placeholder = "Enter username"
         sb.barTintColor = UIColor.gray

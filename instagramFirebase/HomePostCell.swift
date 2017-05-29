@@ -70,7 +70,6 @@ class HomePostCell: UICollectionViewCell {
     }()
     
     let usernameLabel: UILabel = {
-    
         let label = UILabel()
         label.text = "Username"
         label.font = UIFont.boldSystemFont(ofSize: 14)

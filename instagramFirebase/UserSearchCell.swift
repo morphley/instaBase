@@ -13,19 +13,14 @@ class UserSearchCell: UICollectionViewCell {
     var user: User? {
     
         didSet{
-        
             userNameLabel.text = user?.username
             guard let profileImageUrl = user?.profileImageUrl else { return }
             profileImageView.loadImage(urlString: (profileImageUrl))
-            
-        
-        
         }
     
     }
     
     let profileImageView: CustomImageView = {
-        
         let iv = CustomImageView()
         //iv.backgroundColor = UIColor.white
         iv.contentMode = .scaleAspectFill
@@ -34,7 +29,6 @@ class UserSearchCell: UICollectionViewCell {
     }()
     
     let userNameLabel: UILabel = {
-        
         let label = UILabel()
         label.text = "Username"
         label.font = UIFont.boldSystemFont(ofSize: 14)
@@ -67,9 +61,6 @@ class UserSearchCell: UICollectionViewCell {
         separatorView.anchor(top: nil, left: userNameLabel.leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 0.5)
         
     }
-    
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
