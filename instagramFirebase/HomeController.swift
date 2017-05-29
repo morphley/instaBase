@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 
 
-
+// IOS 9
+//let refreshControl = UIRefreshControl() Then you have access to stop the refresh
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -20,15 +21,25 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateFeedNotificationName, object: nil)
+        
+        
         collectionView?.backgroundColor = UIColor.white
         
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        
+        
+        collectionView?.refreshControl = refreshControl
+        
         setupNavigationItems()
         
-        fetchPosts()
-        
-             fetchFollowingUserIds()
+        fetchAllPosts()
         
         //        FIRDatabase.fetchUserWithUid(uid: "oasdkisajdiasdisa") { (user) in
         //
@@ -36,9 +47,28 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         //        }
         
         
-   
+        
     }
     
+    
+    func handleUpdateFeed(){
+    
+    handleRefresh()
+    }
+    
+    
+    func handleRefresh(){
+        print("Handling Refresh...")
+        
+        posts.removeAll()
+        fetchAllPosts()
+    }
+    
+    
+    fileprivate func fetchAllPosts(){
+        fetchPosts()
+        fetchFollowingUserIds()
+    }
     
     
     fileprivate func fetchFollowingUserIds(){
@@ -92,6 +122,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             // print(snapshot.value)
+            self.collectionView?.refreshControl?.endRefreshing()
             
             guard let dictionaries = snapshot.value as? [String : Any] else { return }
             
@@ -117,6 +148,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             })
             
             self.collectionView?.reloadData()
+            
             
         }) { (err) in
             
