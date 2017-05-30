@@ -36,84 +36,9 @@
             
         }
         
-        var posts = [Post]()
-        
-        fileprivate func fetchOrderedPost(){
-            
-            guard let uid = self.user?.uid else { return }
-            let ref = FIRDatabase.database().reference().child("posts").child(uid)
-            
-            ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
-                
-                print(snapshot.key, snapshot.value)
-                guard let dictionary = snapshot.value as? [String: Any] else { return }
-                
-                guard let user = self.user else {return}
-                
-                let post = Post(user: user, dictionary: dictionary)
-                
-                self.posts.insert(post, at: 0)
-              //  self.posts.append(post)
-                
-                    
-                    self.collectionView?.reloadData()
-               
-   
-                
-            }) { (err) in
-                print("failed to fetch ordered post",err)
-            }
-        
-        }
-        
-        
-        
-        
-//        fileprivate func fetchPosts(){
-//    
-//            guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
-//            
-//            let ref = FIRDatabase.database().reference().child("posts").child(uid)
-//            
-//            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//                      print(snapshot.value)
-//                
-//                
-//                guard let dictionaries = snapshot.value as? [String : Any] else { return }
-//                
-//                dictionaries.forEach({ (key, value) in
-//                    print("Key\(key), value \(value)")
-//                    
-//                    guard let dictionary = value as? [String : Any ] else { return }
-//                    let imageUrl = dictionary["imageUrl"] as? String
-//                    
-//                    print("imageUrl\(imageUrl)")
-//                    
-//                    let post = Post(dictionary: dictionary)
-//                    self.posts.append(post)
-//                    
-//                    
-//                })
-//                
-//                self.collectionView?.reloadData()
-//                
-//            }) { (err) in
-//                
-//                print("Failed to fetch posts:", err)
-//            }
-//            
-//            
-//        
-//        }
-        
-        
-        
         
         fileprivate func setupLogoutButton(){
-        
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogout))
-        
-        
         }
         
         func handleLogout(){
@@ -175,7 +100,7 @@
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
             
-                            var width = ( view.frame.width - 2 ) / 3
+                        var width = ( view.frame.width - 2 ) / 3
                         return CGSize(width: width , height: width)
 
             
@@ -242,6 +167,83 @@
             
             
         }
+        
+        
+        
+        
+        var posts = [Post]()
+        
+        fileprivate func fetchOrderedPost(){
+            
+            guard let uid = self.user?.uid else { return }
+            let ref = FIRDatabase.database().reference().child("posts").child(uid)
+            
+            ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+                
+                print(snapshot.key, snapshot.value)
+                guard let dictionary = snapshot.value as? [String: Any] else { return }
+                
+                guard let user = self.user else {return}
+                
+                let post = Post(user: user, dictionary: dictionary)
+                
+                self.posts.insert(post, at: 0)
+                //  self.posts.append(post)
+                
+                
+                self.collectionView?.reloadData()
+                
+                
+                
+            }) { (err) in
+                print("failed to fetch ordered post",err)
+            }
+            
+        }
+        
+        
+        
+        
+        //        fileprivate func fetchPosts(){
+        //
+        //            guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
+        //
+        //            let ref = FIRDatabase.database().reference().child("posts").child(uid)
+        //
+        //            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        //                      print(snapshot.value)
+        //
+        //
+        //                guard let dictionaries = snapshot.value as? [String : Any] else { return }
+        //
+        //                dictionaries.forEach({ (key, value) in
+        //                    print("Key\(key), value \(value)")
+        //
+        //                    guard let dictionary = value as? [String : Any ] else { return }
+        //                    let imageUrl = dictionary["imageUrl"] as? String
+        //
+        //                    print("imageUrl\(imageUrl)")
+        //
+        //                    let post = Post(dictionary: dictionary)
+        //                    self.posts.append(post)
+        //
+        //
+        //                })
+        //
+        //                self.collectionView?.reloadData()
+        //                
+        //            }) { (err) in
+        //                
+        //                print("Failed to fetch posts:", err)
+        //            }
+        //            
+        //            
+        //        
+        //        }
+        
+        
+        
+        
         
     }
     

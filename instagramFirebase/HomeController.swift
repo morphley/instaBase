@@ -13,15 +13,16 @@ import Firebase
 // IOS 9
 //let refreshControl = UIRefreshControl() Then you have access to stop the refresh
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate {
     
     
     let cellId = "cellId"
     
+    let refreshControl = UIRefreshControl()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateFeedNotificationName, object: nil)
         
@@ -31,11 +32,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
         
-        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         
         
         collectionView?.refreshControl = refreshControl
+        
         
         setupNavigationItems()
         
@@ -52,8 +53,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     
     func handleUpdateFeed(){
-    
-    handleRefresh()
+        
+        handleRefresh()
     }
     
     
@@ -185,16 +186,40 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     
+    var cellToReturn: UICollectionViewCell!
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
+        if !self.refreshControl.isRefreshing {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
+            
+            // cell default color is transparent  with default height und width of 50
+            
+            cell.post = posts[indexPath.item]
+            cell.delegate = self
+            cellToReturn = cell
+            
+            
+            
+        }
         
-        // cell default color is transparent  with default height und width of 50
-        
-        cell.post = posts[indexPath.item]
-        return cell
-        
+        return cellToReturn
     }
     
+    
+    
+    // you have to specify the method of the delegate
+    
+    func didTapComment(post: Post) {
+        // to figure out which post we are tapping on 
+        print("message coming from HomeController")
+        let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(commentsController, animated: true)
+        print(post.caption)
+    }
+    
+    
+   
 }
