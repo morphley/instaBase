@@ -130,13 +130,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             dictionaries.forEach({ (key, value) in
                 print("Key\(key), value \(value)")
                 
+            
+                
                 guard let dictionary = value as? [String : Any ] else { return }
                 print(dictionary)
                 
                 let imageUrl = dictionary["imageUrl"] as? String
                 
                 //  let dummyUser = User(dictionary: ["username": "omari"])
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key
                 
                 self.posts.append(post)
                 
@@ -216,6 +219,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         // to figure out which post we are tapping on 
         print("message coming from HomeController")
         let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
         print(post.caption)
     }
